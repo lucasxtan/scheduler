@@ -24,10 +24,34 @@ export function getAppointmentsForDay(state, dayName) {
   }
 }
 
+export function getInterviewersForDay(state, dayName) {
+  const appointments = [];
+  // console.log('dayName', dayName)
+
+
+  const dayObject = state.days.find((day) => {
+    if (day.name === dayName) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  console.log('dayObject', dayObject);
+  
+  if (dayObject) {
+    return dayObject.interviewers.map((interviewer) => {
+      return state.interviewers[interviewer];
+    });
+  } else {
+    return [];
+  }
+}
+
 export function getInterview(state, interview) {
   // const getInterview = {}
-  console.log('interview', interview);
-  console.log('state', state);
+  // console.log('interview', interview);
+  // console.log('state', state);
   if (interview) {
     return { student: interview.student, interviewer: state.interviewers[interview.interviewer] };
   } else {
