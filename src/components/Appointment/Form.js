@@ -2,11 +2,13 @@
 import InterviewerList from "components/InterviewerList.js";
 import Button from "components/Button";
 import React, { useState } from 'react';
+import { fireEvent } from "@testing-library/react";
 
 
 const Form = (props) => {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
 
   const reset = function (){
     setStudent("");
@@ -17,6 +19,20 @@ const Form = (props) => {
     reset()
     props.onCancel();
     console.log("cancel")
+  }
+
+  function validate() {
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+  
+    props.onSave(student, interviewer.id);
   }
 
   console.log(student);
@@ -33,6 +49,7 @@ const Form = (props) => {
             value={student}
             data-testid="student-name-input"
           />
+          <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
           interviewers={props.interviewers}
@@ -43,7 +60,7 @@ const Form = (props) => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={() => {cancel()}}>Cancel</Button>
-          <Button confirm onClick={() => props.onSave(student, interviewer)}>Save</Button>
+          <Button confirm onClick={() => validate()}>Save</Button>
         </section>
       </section>
     </main>
