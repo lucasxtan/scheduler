@@ -2,7 +2,6 @@
 
 export function getAppointmentsForDay(state, dayName) {
   const appointments = [];
-  // console.log('dayName', dayName)
 
 
   const dayObject = state.days.find((day) => {
@@ -15,7 +14,6 @@ export function getAppointmentsForDay(state, dayName) {
 
   if (dayObject) {
     return dayObject.appointments.map((appointmentNumber) => {
-      // console.log('appointmentNumber', appointmentNumber)
 
       return state.appointments[appointmentNumber];
     });
@@ -26,7 +24,6 @@ export function getAppointmentsForDay(state, dayName) {
 
 export function getInterviewersForDay(state, dayName) {
   const appointments = [];
-  // console.log('dayName', dayName)
 
 
   const dayObject = state.days.find((day) => {

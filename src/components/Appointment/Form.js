@@ -4,23 +4,25 @@ import Button from "components/Button";
 import React, { useState } from 'react';
 import { fireEvent } from "@testing-library/react";
 
-
+//form for creating a new appointment
 const Form = (props) => {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  //function to reset the student name
   const reset = function (){
     setStudent("");
     setInterviewer(null);
   }
 
+  //function to cancel saving an appointment
   const cancel = function() {
     reset()
     props.onCancel();
-    console.log("cancel")
   }
 
+  //function to validate whether a student name is set and interviewer is selected
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -31,11 +33,11 @@ const Form = (props) => {
       setError("Please select an interviewer");
       return;
     }
-  
-    props.onSave(student, interviewer.id);
+
+    setError("");
+    props.onSave(student, interviewer);
   }
 
-  console.log(student);
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">

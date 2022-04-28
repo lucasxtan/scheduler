@@ -5,22 +5,13 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
+  //transitions to the next mode with the next component
   const transition = (newMode, replace = false) => {
     setMode(newMode);
-console.log('old history', history);
     setHistory(prev => replace === true ? [...prev.slice(0, prev.length -1), newMode] : [...prev, newMode])
-    console.log('new mode', newMode);
-    // if (replace === true){
-    //   const newHistory = [...history];
-    //   newHistory[newHistory.length -1] = newMode
-    //   setHistory(newHistory);
-    // } else {
-    //   const newHistory = [...history]
-    //   newHistory.push(newMode);
-    //   setHistory(newHistory);
-    // }
   }
 
+  //goes back to the previous component
   const back = () => {
     const currentHistory = [...history];
     currentHistory.pop();

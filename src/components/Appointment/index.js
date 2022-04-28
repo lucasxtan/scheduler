@@ -21,17 +21,17 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 const Appointment = (props) => {
-  // return "hi"
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+  console.log('props console', props);
 
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
-
+ 
     transition(SAVING);
 
     props.bookInterview(props.id, interview)
@@ -49,20 +49,15 @@ const Appointment = (props) => {
     props.cancelInterview(props.id, interview)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
-    // interview = null
   }
   console.log('props.interview', props.interview);
 
   return (
     <article className="appointment">
-      {/* {props.time && <p>Appointment at {props.time}</p>}
-      {!props.time && <p>No appointments</p>} */}
-      {/* {props.time ? <Header/>} */}
+
       <Header time={props.time} />
-      {/* {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty />} */}
 
       {mode === EMPTY && <Empty onAdd={() => {
-        //transition to CREATE
         transition(CREATE);
       }} />}
       {(mode === SHOW && props.interview) && (
@@ -86,6 +81,5 @@ const Appointment = (props) => {
     </article>
   );
 };
-// interviewer={props.interview.interviewer.id}
 
 export default Appointment;

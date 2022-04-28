@@ -32,15 +32,6 @@ export default function Application(props) {
   });
   console.log('schedule', schedule);
 
-  // const setDays = (days) => {
-  //   setState(prev=>({ ...prev, days })) //prev gives most up to date state
-  // }
-
-  // const setDays = (days) => {
-  //   setState({ ...state, days })
-  // }
-  // const setDay = day => setState({ ...state, day });
-
   return (
     <main className="layout">
       <section className="sidebar">
@@ -62,7 +53,6 @@ export default function Application(props) {
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />
-        {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
       </section>
       <section className="schedule">
         {schedule}
