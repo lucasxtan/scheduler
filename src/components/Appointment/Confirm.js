@@ -2,7 +2,7 @@ import React from "react";
 import Button from "components/Button";
 
 
-
+//message for confirming if you want to delete or not
 const Confirm = (props) => {
   return (
     <main className="appointment__card appointment__card--confirm">

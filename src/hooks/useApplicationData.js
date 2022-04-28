@@ -39,7 +39,6 @@ const useApplicationData = () => {
       [id]: appointment,
     };
 
-    // setState(state => ({ ...state, appointments})); //only updating our state locally
     return axios
       .put(`api/appointments/${id}`, { interview })
       .then(response => {
@@ -59,7 +58,6 @@ const useApplicationData = () => {
       ...state.appointments,
       [id]: appointment,
     };
-
 
     return axios
       .delete(`api/appointments/${id}`)
